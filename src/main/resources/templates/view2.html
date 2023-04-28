@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title th:text="${BreweryName}"></title>
+</head>
+
+<body>
+	<a href="javascript:history.back()" th:text="Back"></a>
+
+	<p>Description: <span th:text="${description}"></span></p>
+
+	<input type="text" id="address1" th:modelAttribute="breweries.address1">
+	<input type="text" id="address2" th:modelAttribute="breweries.address2">
+	<input type="text" id="city" th:modelAttribute="breweries.city">
+	<p th:text="${breweries.address1 + breweries.address2 + breweries.city}"></p>
+
+	<p>Phone: <span th:text="${phone}"></span></p>
+
+	<a th:href="${website}">Go</a>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Style</th>
+				<th>Beer Count</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-th-each="s: ${styles}" data-th-object="${s}">
+				<td>
+					<span data-th-text="*{name}"></span>
+				</td>
+				<td>
+					<a data-th-href="@{/beer/style/{id}?styleName={styleName}(id=*{styleId}, styleName=*{name})}">
+						<span data-th-text="*{beerCount}"></span>
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>
